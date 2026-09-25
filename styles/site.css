@@ -1365,3 +1365,28 @@ img[src*="cut-lens-disc"] { filter: hue-rotate(58deg) saturate(.85); }
   .hero2__video { object-position: 50% 42%; }
 }
 @media (max-width: 640px) { .hero2__media { aspect-ratio: 6 / 5; } }
+
+/* ======================= Hero v5 - below 1024px the film sits behind the copy (owner, 2026-09-26) =======================
+   Desktop (>= 1024px) is locked by the owner: every rule here is inside max-width: 1023px. The film fills the
+   hero stage behind the eyebrow, heading and buttons; a vertical white veil keeps them readable (strongest
+   behind the small eyebrow and the heading, easing off below the buttons, where the film shows through), and
+   the stage is tall enough that the film has room below the buttons. The quick-action bar still straddles
+   the stage's rounded lower edge. */
+@media (max-width: 1023px) {
+  .hero2__grid { min-height: clamp(420px, calc(100svh - 300px), 720px); align-items: start; }
+  .hero2__media {
+    position: absolute; z-index: 1; top: 0; right: 0; bottom: var(--hero2-overlap); left: 0;
+    margin: 0; aspect-ratio: auto; border-radius: 0 0 var(--r-xl) var(--r-xl);
+  }
+  .hero2__media::after {
+    background: linear-gradient(180deg,
+      color-mix(in srgb, var(--paper) 90%, transparent) 0%,
+      color-mix(in srgb, var(--paper) 82%, transparent) 30%,
+      color-mix(in srgb, var(--paper) 78%, transparent) 36%,   /* the heading ends at 26-34% of the stage (360-1023px) */
+      color-mix(in srgb, var(--paper) 52%, transparent) 46%,   /* the buttons carry their own backgrounds */
+      color-mix(in srgb, var(--paper) 22%, transparent) 60%,
+      color-mix(in srgb, var(--paper) 6%, transparent) 78%,
+      transparent 92%);
+  }
+  .hero2__video { object-position: 50% 40%; }
+}
