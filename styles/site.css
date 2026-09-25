@@ -1390,3 +1390,35 @@ img[src*="cut-lens-disc"] { filter: hue-rotate(58deg) saturate(.85); }
   }
   .hero2__video { object-position: 50% 40%; }
 }
+
+/* ======================= Hero v5.1 - mobile art direction (independent QA, 2026-09-26) =======================
+   H5-CROP-1: filling the whole tall phone stage, the 16:9 film was scaled by height (only 23-35% of its width
+   visible) and its eyes and eyewear sat behind the buttons, leaving a close-up of the nose and lips below them.
+   The film now starts at the heading (it still runs behind the heading and both buttons) and ends at the stage
+   edge: less zoom, and at the loop's start / in the poster the eyewear lands just below the buttons. The top
+   edge is feathered; the eyebrow sits above it on the plain stage. Still inside max-width: 1023px. */
+@media (max-width: 1023px) {
+  .hero2__media {
+    top: calc(var(--header-h) + 6rem);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 56px); mask-image: linear-gradient(180deg, transparent 0, #000 56px);
+  }
+  .hero2__media::after {
+    background: linear-gradient(180deg,
+      color-mix(in srgb, var(--paper) 88%, transparent) 0%,
+      color-mix(in srgb, var(--paper) 84%, transparent) 16%,   /* the heading ends at ~15% of the film box */
+      color-mix(in srgb, var(--paper) 62%, transparent) 24%,   /* the buttons carry their own backgrounds */
+      color-mix(in srgb, var(--paper) 30%, transparent) 32%,
+      color-mix(in srgb, var(--paper) 8%, transparent) 42%,
+      transparent 56%);
+  }
+}
+@media (max-width: 640px) { .hero2__media { top: calc(var(--header-h) + 6rem); } }   /* mid-heading: the eyewear clears the buttons on 360-430px phones at the loop start */
+/* H5-LAND-1: landscape phones - the tall stage made the hero two screens tall */
+@media (max-width: 1023px) and (max-height: 500px) {
+  .hero2__grid { min-height: 0; }
+  .hero2__copy h1 { font-size: clamp(1.7rem, 1.2rem + 2.2vw, 2.2rem); }
+}
+/* H5-TOTOP-1 (site-wide, no visual change): the hidden back-to-top button (opacity 0) still took taps over the
+   last quick action; it only receives the pointer while shown */
+.totop { pointer-events: none; }
+.totop.is-shown { pointer-events: auto; }
