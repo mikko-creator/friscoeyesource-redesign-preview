@@ -1062,7 +1062,10 @@ h2.eyebrow { font-size: .78rem; font-weight: 700; letter-spacing: .16em; line-he
   --focus: var(--rg-700);
   --stage: linear-gradient(180deg, var(--paper), var(--rg-50) 45%, var(--rg-100));
   /* metallic rose gold (primary CTAs) */
-  --metal: linear-gradient(115deg, var(--metal-1) 0%, var(--metal-2) 17%, var(--metal-3) 29%, var(--metal-4) 45%, var(--metal-5) 60%, var(--metal-6) 78%, var(--metal-7) 100%);
+  /* smooth polished rose gold (owner, 2026-09-26: no grain, no banding). The layer is 240% wide: at rest the
+     visible slice (0-42%) carries one soft highlight at ~21%; on hover it slides to 58-100%, where the
+     second highlight (~79%) lands - the reflection glides across the face */
+  --metal: linear-gradient(115deg, var(--metal-5) 0%, var(--metal-2) 11%, var(--metal-3) 21%, var(--metal-2) 31%, var(--metal-1) 43%, var(--metal-5) 50%, var(--metal-1) 57%, var(--metal-2) 69%, var(--metal-3) 79%, var(--metal-2) 89%, var(--metal-5) 100%);
 }
 ::selection { background: var(--rg-200); color: var(--ink); }
 
@@ -1071,7 +1074,7 @@ h2.eyebrow { font-size: .78rem; font-weight: 700; letter-spacing: .16em; line-he
 .stage--night .eyebrow, .glass--night .eyebrow, .band__card .eyebrow { color: var(--rg-700); }
 .h-accent, .stage--night .h-accent {
   color: transparent;
-  background: linear-gradient(100deg, var(--rg-900), var(--rg-600) 50%, var(--rg-800));
+  background: linear-gradient(100deg, var(--rg-900), var(--rg-700) 50%, var(--rg-800));   /* lightest stop >= 3:1 over the veiled film at 1920 (rg-600 measured 2.76) */
   -webkit-background-clip: text; background-clip: text;
 }
 .glass--night {
@@ -1160,11 +1163,10 @@ h2.eyebrow { font-size: .78rem; font-weight: 700; letter-spacing: .16em; line-he
   --btn-fg: var(--metal-ink);
   background-color: var(--metal-base);
   background-image:
-    linear-gradient(180deg, color-mix(in srgb, var(--paper) 42%, transparent), transparent 48%, color-mix(in srgb, var(--rg-900) 10%, transparent)),
-    repeating-linear-gradient(90deg, color-mix(in srgb, var(--paper) 9%, transparent) 0 1px, transparent 1px 3px),
+    linear-gradient(180deg, color-mix(in srgb, var(--paper) 34%, transparent), transparent 52%, color-mix(in srgb, var(--rg-900) 5%, transparent)),
     var(--metal);
-  background-size: 100% 100%, 100% 100%, 240% 100%;
-  background-position: 0 0, 0 0, 0% 0;
+  background-size: 100% 100%, 240% 100%;
+  background-position: 0 0, 0% 0;
   border-color: color-mix(in srgb, var(--rg-700) 55%, transparent);
   box-shadow:
     inset 0 1px 0 color-mix(in srgb, var(--paper) 80%, transparent),
@@ -1180,7 +1182,7 @@ h2.eyebrow { font-size: .78rem; font-weight: 700; letter-spacing: .16em; line-he
   transition: transform .95s var(--ease);
 }
 .btn--primary:hover, .btn--light:hover, .btn--primary:focus-visible, .btn--light:focus-visible {
-  background-position: 0 0, 0 0, 100% 0;
+  background-position: 0 0, 100% 0;
   box-shadow:
     inset 0 1px 0 color-mix(in srgb, var(--paper) 90%, transparent),
     inset 0 -1px 0 color-mix(in srgb, var(--rg-900) 30%, transparent),
@@ -1214,7 +1216,9 @@ h2.eyebrow { font-size: .78rem; font-weight: 700; letter-spacing: .16em; line-he
 /* desktop: the panel is positioned against the section (no positioned ancestor in between) */
 .hero2__media {
   position: absolute; z-index: 1; right: 0;
-  top: calc(var(--header-h) + 38px); bottom: calc(var(--hero2-overlap) + 18px);
+  /* the foot stays clear of the quick-action bar, which straddles the stage edge (94px tall): bottom inset =
+     overlap + 72px leaves a 30px gap (owner, 2026-09-26: the panel overlapped the bar by 24px) */
+  top: calc(var(--header-h) + 38px); bottom: calc(var(--hero2-overlap) + 72px);
   width: min(45vw, 860px);
   border-radius: var(--r-xl) 0 0 var(--r-xl); overflow: hidden;
   background: var(--rg-200) url("../media/hero-eyewear-poster.webp") center / cover no-repeat;
@@ -1330,3 +1334,34 @@ img[src*="cut-lens-disc"] { filter: hue-rotate(58deg) saturate(.85); }
   .deck .deck__card blockquote { max-height: none !important; -webkit-mask-image: none !important; mask-image: none !important; }
   .deck__more, .reviews__controls { display: none !important; }
 }
+
+/* ======================= Hero v4 - the film full width, a veil on the left (owner, 2026-09-26) =======================
+   The film now fills the whole hero stage edge to edge (under the floating header pill, down to the stage's
+   rounded lower edge, where the quick-action bar's glass straddles it). A white veil on the left keeps the copy
+   readable; the film's subject is centred, so on screens narrower than 16:9 the crop shifts it right
+   (object-position 30%). Overrides every earlier placement of .hero2__media. */
+.hero2__media {
+  position: absolute; z-index: 1; top: 0; right: 0; bottom: var(--hero2-overlap); left: 0;
+  width: auto; height: auto; max-height: none; margin: 0; aspect-ratio: auto;
+  border-radius: 0 0 var(--r-xl) var(--r-xl); box-shadow: none;
+}
+.hero2__media::after {
+  box-shadow: none;
+  background:
+    linear-gradient(90deg,
+      color-mix(in srgb, var(--paper) 94%, transparent) 0%,
+      color-mix(in srgb, var(--paper) 88%, transparent) 24%,
+      color-mix(in srgb, var(--paper) 60%, transparent) 42%,
+      color-mix(in srgb, var(--paper) 18%, transparent) 56%,
+      transparent 68%),
+    linear-gradient(180deg, color-mix(in srgb, var(--paper) 50%, transparent), transparent 22%);
+}
+.hero2__video { object-position: 30% 42%; }
+/* below 1024px the copy takes the full width, so the film becomes a full-bleed band under it, faded in from
+   the stage colour at its top edge */
+@media (max-width: 1023px) {
+  .hero2__media { position: relative; top: auto; right: auto; bottom: auto; left: auto; margin: clamp(1.8rem, 1rem + 3vw, 2.6rem) calc(-1 * var(--gutter)) 0; aspect-ratio: 16 / 10; border-radius: 0; }
+  .hero2__media::after { background: linear-gradient(180deg, color-mix(in srgb, var(--rg-50) 92%, transparent), transparent 28%); }
+  .hero2__video { object-position: 50% 42%; }
+}
+@media (max-width: 640px) { .hero2__media { aspect-ratio: 6 / 5; } }

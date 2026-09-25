@@ -133,11 +133,11 @@
   --rose-tint-2: #f5dccf;
   --rose-tint-3: #f3c9b8;
   /* metallic rose gold (primary buttons) */
-  --metal-1: #c98f7f;
+  --metal-1: #d19c8d;   /* lightened 2026-09-26: the darkest metal behind the label stays >= 4.5:1 with the text */
   --metal-2: #eecbbd;
   --metal-3: #fbe9df;
   --metal-4: #dfb0a1;
-  --metal-5: #c88d7d;
+  --metal-5: #d09a8b;
   --metal-6: #eac5b6;
   --metal-7: #d19b8b;
   --metal-base: #dcae9f;
