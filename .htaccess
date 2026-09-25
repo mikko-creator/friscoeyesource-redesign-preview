@@ -1,0 +1,14 @@
+# Carried-forward redirects (see audit/redirects.json)
+RedirectMatch 301 ^/your-eye-health/eye-conditions/?$ /eye-care-services/eye-conditions/
+RedirectMatch 301 ^/eye-care-services/pediatric-eye-exams/?$ /eye-care-services/eye-exams/pediatric-eye-exams/
+RedirectMatch 301 ^/your-eye-health/eye-diseases/?$ /eye-care-services/your-eye-health/eye-diseases/
+RedirectMatch 301 ^/your-eye-health/protecting-your-eyes/?$ /eye-care-services/your-eye-health/protecting-your-eyes/
+RedirectMatch 301 ^/eyeglasses-contacts/designer-frames/?$ /eyeglasses-contacts/eyeglasses/designer-frames/
+RedirectMatch 301 ^/eyeglasses-contacts/prescription-eyeglasses/?$ /eyeglasses-contacts/eyeglasses/prescription-eyeglasses/
+RedirectMatch 301 ^/eyeglasses-contacts/sunglasses/?$ /eyeglasses-contacts/eyeglasses/sunglasses/
+RedirectMatch 301 ^/your-eye-health/eye-diseases/cataracts/?$ /eye-care-services/your-eye-health/eye-diseases/cataracts/
+RedirectMatch 301 ^/your-eye-health/eye-diseases/cataracts/cataracts-video/?$ /eye-care-services/your-eye-health/eye-diseases/cataracts/cataracts-video/
+RedirectMatch 301 ^/your-eye-health/eye-diseases/macular-degeneration/?$ /eye-care-services/your-eye-health/eye-diseases/macular-degeneration/
+RedirectMatch 301 ^/your-eye-health/protecting-your-eyes/protecting-your-eyes-from-glare/?$ /eye-care-services/your-eye-health/protecting-your-eyes/protecting-your-eyes-from-glare/
+RedirectMatch 301 ^/your-eye-health/protecting-your-eyes/protecting-your-eyes-from-uv-rays/?$ /eye-care-services/your-eye-health/protecting-your-eyes/protecting-your-eyes-from-uv-rays/
+RedirectMatch 301 ^/our-eye-doctors/?$ /our-eye-doctor/

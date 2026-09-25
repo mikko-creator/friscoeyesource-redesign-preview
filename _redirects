@@ -1,0 +1,27 @@
+# Carried-forward redirects (see audit/redirects.json)
+/your-eye-health/eye-conditions/  /eye-care-services/eye-conditions/  301
+/your-eye-health/eye-conditions  /eye-care-services/eye-conditions/  301
+/eye-care-services/pediatric-eye-exams/  /eye-care-services/eye-exams/pediatric-eye-exams/  301
+/eye-care-services/pediatric-eye-exams  /eye-care-services/eye-exams/pediatric-eye-exams/  301
+/your-eye-health/eye-diseases/  /eye-care-services/your-eye-health/eye-diseases/  301
+/your-eye-health/eye-diseases  /eye-care-services/your-eye-health/eye-diseases/  301
+/your-eye-health/protecting-your-eyes/  /eye-care-services/your-eye-health/protecting-your-eyes/  301
+/your-eye-health/protecting-your-eyes  /eye-care-services/your-eye-health/protecting-your-eyes/  301
+/eyeglasses-contacts/designer-frames/  /eyeglasses-contacts/eyeglasses/designer-frames/  301
+/eyeglasses-contacts/designer-frames  /eyeglasses-contacts/eyeglasses/designer-frames/  301
+/eyeglasses-contacts/prescription-eyeglasses/  /eyeglasses-contacts/eyeglasses/prescription-eyeglasses/  301
+/eyeglasses-contacts/prescription-eyeglasses  /eyeglasses-contacts/eyeglasses/prescription-eyeglasses/  301
+/eyeglasses-contacts/sunglasses/  /eyeglasses-contacts/eyeglasses/sunglasses/  301
+/eyeglasses-contacts/sunglasses  /eyeglasses-contacts/eyeglasses/sunglasses/  301
+/your-eye-health/eye-diseases/cataracts/  /eye-care-services/your-eye-health/eye-diseases/cataracts/  301
+/your-eye-health/eye-diseases/cataracts  /eye-care-services/your-eye-health/eye-diseases/cataracts/  301
+/your-eye-health/eye-diseases/cataracts/cataracts-video/  /eye-care-services/your-eye-health/eye-diseases/cataracts/cataracts-video/  301
+/your-eye-health/eye-diseases/cataracts/cataracts-video  /eye-care-services/your-eye-health/eye-diseases/cataracts/cataracts-video/  301
+/your-eye-health/eye-diseases/macular-degeneration/  /eye-care-services/your-eye-health/eye-diseases/macular-degeneration/  301
+/your-eye-health/eye-diseases/macular-degeneration  /eye-care-services/your-eye-health/eye-diseases/macular-degeneration/  301
+/your-eye-health/protecting-your-eyes/protecting-your-eyes-from-glare/  /eye-care-services/your-eye-health/protecting-your-eyes/protecting-your-eyes-from-glare/  301
+/your-eye-health/protecting-your-eyes/protecting-your-eyes-from-glare  /eye-care-services/your-eye-health/protecting-your-eyes/protecting-your-eyes-from-glare/  301
+/your-eye-health/protecting-your-eyes/protecting-your-eyes-from-uv-rays/  /eye-care-services/your-eye-health/protecting-your-eyes/protecting-your-eyes-from-uv-rays/  301
+/your-eye-health/protecting-your-eyes/protecting-your-eyes-from-uv-rays  /eye-care-services/your-eye-health/protecting-your-eyes/protecting-your-eyes-from-uv-rays/  301
+/our-eye-doctors/  /our-eye-doctor/  301
+/our-eye-doctors  /our-eye-doctor/  301
