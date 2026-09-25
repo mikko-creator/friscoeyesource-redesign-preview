@@ -324,6 +324,18 @@
     }
   });
 
+  /* ---- hero film: plays only when motion is allowed, data saving is off and it is on screen; pauses off
+     screen (battery, and nobody watches a loop they scrolled past). Everyone else keeps the poster. ---- */
+  [].forEach.call(document.querySelectorAll('video.hero2__video'), function (v) {
+    var saveData = navigator.connection && navigator.connection.saveData;
+    if (!motionOK || saveData) return;
+    v.muted = true;
+    function play() { if (v.preload !== 'auto') v.preload = 'auto'; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) { en.forEach(function (x) { if (x.isIntersecting) play(); else v.pause(); }); }, { threshold: 0.15 }).observe(v);
+    } else play();
+  });
+
   /* ---- hours: highlight today (display only; the hours themselves are static source copy) ---- */
   var today = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][new Date().getDay()];
   [].forEach.call(document.querySelectorAll('.hours-list li[data-day]'), function (li) {

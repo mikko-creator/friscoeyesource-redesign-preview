@@ -103,3 +103,49 @@
   --bp-18: 1200px;
   --bp-19: 1201px;
 }
+
+/* --- owner pivot: white + rose gold (2026-09-25) ------------------------------------------------
+   The palette the owner asked for, declared in the token layer and referenced by name from site.css.
+   sr-tokens regenerates the block above from the source capture; keep this block if it is ever re-run. */
+:root {
+  /* rose gold scale (--rg-700 is the source's own measured accent, #93605b) */
+  --rg-900: #6f403c;
+  --rg-800: #7f4c47;
+  --rg-700: #93605b;
+  --rg-600: #a8756b;
+  --rg-500: #b98175;
+  --rg-400: #cf9e90;
+  --rg-300: #e2bfb2;
+  --rg-200: #efd7cd;
+  --rg-100: #f8ebe5;
+  --rg-50: #fdf7f4;
+  /* warm neutrals and roles */
+  --warm-ink: #2b1d1f;
+  --warm-slate: #5b4447;
+  --warm-text-soft: #6a5456;
+  --rose-alert: #a8323f;
+  --rose-star: #a6685a;
+  /* the light field's pools, pre-pivot (violet/sky/peach) and rose-gold */
+  --tint-violet: #b9a2e3;
+  --tint-sky: #8fb6ea;
+  --tint-peach: #f1c3b1;
+  --rose-tint-1: #e8b9a8;
+  --rose-tint-2: #f5dccf;
+  --rose-tint-3: #f3c9b8;
+  /* metallic rose gold (primary buttons) */
+  --metal-1: #c98f7f;
+  --metal-2: #eecbbd;
+  --metal-3: #fbe9df;
+  --metal-4: #dfb0a1;
+  --metal-5: #c88d7d;
+  --metal-6: #eac5b6;
+  --metal-7: #d19b8b;
+  --metal-base: #dcae9f;
+  --metal-ink: #2e1719;
+  --metal-spec: #fff7f2;
+  --metal-glow: #ffe3d6;
+  /* emergency card (rose red family) */
+  --emerg-rim: #b24a55;
+  --emerg-hi: #cf6b73;
+  --emerg-lo: #8f3a44;
+}

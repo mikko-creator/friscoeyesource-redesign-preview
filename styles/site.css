@@ -31,9 +31,6 @@
   --alert: var(--c-9);
 
   /* light-field tints — the only literals: glass needs colour behind it to refract */
-  --tint-violet: #b9a2e3;
-  --tint-sky: #8fb6ea;
-  --tint-peach: #f1c3b1;
 
   /* derived */
   --night: color-mix(in oklab, var(--slate) 58%, var(--ink));
@@ -1038,4 +1035,298 @@ h2.eyebrow { font-size: .78rem; font-weight: 700; letter-spacing: .16em; line-he
     opacity: 0; transform: translateY(-4px); pointer-events: none; transition: opacity .25s var(--ease), transform .25s var(--ease);
   }
   .header-cta .btn:hover::after, .header-cta .btn:focus-visible::after { opacity: 1; transform: none; }
+}
+
+
+/* ======================= Rose gold theme (owner pivot, 2026-09-25) =======================
+   The owner moved the whole site to white and rose gold. The source's own measured accent, #93605b, is the
+   deep end of the rose-gold scale and stays the text-safe accent (5.2:1 on white). Sections that were
+   "night" keep their class names (markup unchanged) but are now light; --night itself stays a warm dark
+   because every shadow on the site is mixed from it. Nothing below changes a layout. */
+:root {
+  /* the rose-gold scale and the warm neutrals are declared in tokens.css ("owner pivot") */
+  --ink: var(--warm-ink);
+  --mauve: var(--rg-700);
+  --lilac: var(--rg-100);
+  --mist: var(--rg-50);
+  --slate: var(--warm-slate);
+  --rose: var(--rg-500);
+  --tint-violet: var(--rose-tint-1);
+  --tint-sky: var(--rose-tint-2);
+  --tint-peach: var(--rose-tint-3);
+  --on-night: var(--ink);
+  --on-night-soft: var(--text);
+  --glass-rim: color-mix(in srgb, var(--rg-300) 72%, var(--paper));
+  --glass-night-rim: var(--glass-rim);
+  --sheen: inset 0 1px 0 color-mix(in srgb, var(--paper) 92%, transparent), inset 0 -1px 0 color-mix(in srgb, var(--rg-300) 34%, transparent);
+  --focus: var(--rg-700);
+  --stage: linear-gradient(180deg, var(--paper), var(--rg-50) 45%, var(--rg-100));
+  /* metallic rose gold (primary CTAs) */
+  --metal: linear-gradient(115deg, var(--metal-1) 0%, var(--metal-2) 17%, var(--metal-3) 29%, var(--metal-4) 45%, var(--metal-5) 60%, var(--metal-6) 78%, var(--metal-7) 100%);
+}
+::selection { background: var(--rg-200); color: var(--ink); }
+
+/* "night" stages are light now */
+.stage--night { background: var(--stage); color: var(--text); }
+.stage--night .eyebrow, .glass--night .eyebrow, .band__card .eyebrow { color: var(--rg-700); }
+.h-accent, .stage--night .h-accent {
+  color: transparent;
+  background: linear-gradient(100deg, var(--rg-900), var(--rg-600) 50%, var(--rg-800));
+  -webkit-background-clip: text; background-clip: text;
+}
+.glass--night {
+  background: linear-gradient(150deg, color-mix(in srgb, var(--paper) 88%, transparent), color-mix(in srgb, var(--rg-50) 72%, transparent));
+  border-color: var(--glass-rim); box-shadow: var(--sheen), var(--shade-2); color: var(--text);
+}
+.glass--night::after { opacity: .7; }
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .glass--night { background: color-mix(in srgb, var(--paper) 94%, var(--rg-100)); }
+}
+.stage--night .btn--glass, .glass--night .btn--glass { --btn-bg: color-mix(in srgb, var(--paper) 74%, transparent); --btn-fg: var(--ink); border-color: var(--rg-300); }
+.stage--night .link-arrow, .glass--night .link-arrow { color: var(--ink); }
+.btn--glass { border-color: var(--rg-300); }
+.btn--glass:hover { border-color: var(--rg-500); }
+
+/* announcement bar and address strip */
+.announce { background: linear-gradient(90deg, var(--rg-200), var(--rg-100) 50%, var(--rg-200)); color: var(--rg-900); }
+.announce b { color: var(--ink); }
+.announce a { color: var(--rg-900); }
+.announce a:hover { color: var(--ink); }
+.announce__close { color: var(--ink); }
+.announce__close:hover { background: color-mix(in srgb, var(--rg-500) 18%, transparent); }
+.strip { background: var(--paper); color: var(--text); border-bottom: 1px solid var(--rg-200); }
+.strip .strip__phone { color: var(--ink); }
+.strip .strip__phone:hover { color: var(--rg-700); }
+.strip__h svg { color: var(--rg-500); }
+
+/* interior page hero */
+.page-hero::before {   /* the stage lives on ::before (base rule above), not on the section */
+  background:
+    radial-gradient(55% 80% at 90% 20%, color-mix(in srgb, var(--tint-violet) 40%, transparent), transparent 70%),
+    radial-gradient(45% 70% at 0% 100%, color-mix(in srgb, var(--rg-300) 44%, transparent), transparent 72%),
+    var(--stage);
+}
+/* luminosity blend: the photo keeps its light and shade but takes the stage's rose hue (no grey cast) */
+.page-hero__bg img { opacity: .3; mix-blend-mode: luminosity; }
+.page-hero__bg::after { background: linear-gradient(95deg, color-mix(in srgb, var(--paper) 90%, transparent) 30%, color-mix(in srgb, var(--paper) 30%, transparent)); }
+.page-hero__visual .lens-glow { background: radial-gradient(circle, color-mix(in srgb, var(--tint-violet) 46%, transparent), transparent 70%); border-color: var(--rg-300); }
+.breadcrumb { color: var(--text-soft); }
+.breadcrumb a { color: var(--ink); }
+
+/* home: family band - a white glass card over the photo, the photo veiled in white on the card's side */
+.band__photo::after { background: linear-gradient(90deg, color-mix(in srgb, var(--paper) 80%, transparent), color-mix(in srgb, var(--paper) 8%, transparent) 72%); }
+@media (max-width: 980px) { .band__photo::after { background: color-mix(in srgb, var(--paper) 56%, transparent); } }
+.band__card.glass--night { background: linear-gradient(150deg, color-mix(in srgb, var(--paper) 93%, transparent), color-mix(in srgb, var(--rg-50) 90%, transparent)); }
+
+/* CTA band */
+.cta-band__card.glass--night { background: linear-gradient(135deg, var(--rg-50), var(--rg-100) 55%, var(--rg-200)); border-color: var(--rg-300); }
+
+/* emergency: rose red instead of pure red, still reads urgent */
+.alert-card { border-left-color: var(--emerg-rim); }
+.alert-card__icon { background: linear-gradient(150deg, var(--emerg-hi), var(--emerg-lo)); }
+
+/* small dark chips and pills become rose gold */
+.dock__icon { background: linear-gradient(145deg, var(--rg-400), var(--rg-800)); }
+.card-arrow { background: linear-gradient(135deg, var(--rg-500), var(--rg-900)); color: var(--paper); }
+.pop-card:hover .card-arrow { background: var(--ink); }
+.linkrow a { background: var(--paper); color: var(--ink) !important; border: 1px solid var(--rg-300); }
+.linkrow a:hover { background: var(--rg-700); color: var(--paper) !important; border-color: var(--rg-700); }
+
+/* footer: blush, black logo, rose gold hairlines */
+.site-footer { background: linear-gradient(180deg, var(--rg-100), var(--rg-50)); color: var(--text); border-top: 1px solid var(--rg-300); }
+.site-footer::before {
+  background:
+    radial-gradient(50% 80% at 90% 0%, color-mix(in srgb, var(--rg-300) 46%, transparent), transparent 70%),
+    radial-gradient(40% 70% at 0% 100%, color-mix(in srgb, var(--tint-sky) 70%, transparent), transparent 72%);
+}
+.site-footer a { color: var(--ink); }
+.site-footer a:hover { color: var(--rg-700); }
+.site-footer h2, .site-footer h3 { color: var(--ink); }
+.site-footer .hours-list li span:first-child { color: var(--ink); }
+.site-footer .hours-list li.is-today { background: color-mix(in srgb, var(--rg-300) 42%, transparent); color: var(--ink); }
+.footer__brand img { filter: none; }
+.footer__nap { border-top-color: var(--rg-300); }
+.footer__nap strong { color: var(--ink); }
+.footer__bar { border-top-color: var(--rg-200); }
+.socials a { background: linear-gradient(135deg, var(--rg-500), var(--rg-800)); color: var(--paper); }
+.socials a:hover { background: var(--ink); color: var(--paper); }
+
+/* ======================= Metallic rose gold primary CTAs (owner, 2026-09-25) =======================
+   Every primary call to action (.btn--primary, and .btn--light, which was the primary on dark stages):
+   a brushed rose-gold body (hairline grain + top gloss + a multi-stop metal gradient) with dark espresso
+   text (>= 4.5:1 on the darkest stop). Hover = the glimmer: the metal's reflection slides across (the
+   gradient is 240% wide and moves) while a narrow specular band sweeps over the face. */
+.btn--primary, .btn--light {
+  --btn-fg: var(--metal-ink);
+  background-color: var(--metal-base);
+  background-image:
+    linear-gradient(180deg, color-mix(in srgb, var(--paper) 42%, transparent), transparent 48%, color-mix(in srgb, var(--rg-900) 10%, transparent)),
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--paper) 9%, transparent) 0 1px, transparent 1px 3px),
+    var(--metal);
+  background-size: 100% 100%, 100% 100%, 240% 100%;
+  background-position: 0 0, 0 0, 0% 0;
+  border-color: color-mix(in srgb, var(--rg-700) 55%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--paper) 80%, transparent),
+    inset 0 -1px 0 color-mix(in srgb, var(--rg-900) 30%, transparent),
+    0 1px 2px color-mix(in srgb, var(--rg-900) 22%, transparent),
+    0 10px 22px -12px color-mix(in srgb, var(--rg-900) 60%, transparent);
+  text-shadow: 0 1px 0 color-mix(in srgb, var(--paper) 45%, transparent);
+  transition: transform .35s var(--ease-spring), box-shadow .45s var(--ease), background-position 1.1s var(--ease), color .3s var(--ease);
+}
+.btn--primary::before, .btn--light::before {
+  background: linear-gradient(105deg, transparent 36%, color-mix(in srgb, var(--paper) 0%, transparent) 40%, color-mix(in srgb, var(--metal-spec) 92%, transparent) 50%, color-mix(in srgb, var(--paper) 0%, transparent) 60%, transparent 64%);
+  transform: translateX(-130%);
+  transition: transform .95s var(--ease);
+}
+.btn--primary:hover, .btn--light:hover, .btn--primary:focus-visible, .btn--light:focus-visible {
+  background-position: 0 0, 0 0, 100% 0;
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--paper) 90%, transparent),
+    inset 0 -1px 0 color-mix(in srgb, var(--rg-900) 30%, transparent),
+    0 14px 30px -12px color-mix(in srgb, var(--rg-900) 62%, transparent),
+    0 0 0 4px color-mix(in srgb, var(--rg-300) 55%, transparent),
+    0 0 26px -4px color-mix(in srgb, var(--metal-glow) 80%, transparent);
+}
+.btn--primary:hover::before, .btn--light:hover::before, .btn--primary:focus-visible::before, .btn--light:focus-visible::before { transform: translateX(130%); }
+
+/* ======================= Hero v3 - the owner's looping film (2026-09-25) =======================
+   Copy on the left on a white/blush stage; the film in one rounded panel bleeding off the right edge
+   (its subject is centred, so a text overlay would cover the face); the quick-action bar's glass
+   straddles the stage's lower edge and the panel's foot. No other images in the hero. */
+.hero2 { --hero2-overlap: 52px; background: transparent; }
+.hero2::before {
+  inset: 0 0 var(--hero2-overlap);
+  background:
+    radial-gradient(38% 56% at 72% 42%, color-mix(in srgb, var(--tint-violet) 34%, transparent), transparent 72%),
+    radial-gradient(34% 50% at 0% 100%, color-mix(in srgb, var(--rg-300) 36%, transparent), transparent 70%),
+    var(--stage);
+}
+/* the copy column is wide enough for both CTAs on one row (567px at 1440); the film panel is narrow enough
+   to leave >= 40px between them (checked 1024-1920 in tmp/navhero/rg-measure.mjs) */
+.hero2__grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(2rem, 1rem + 2.6vw, 4rem); align-items: center; min-height: clamp(420px, calc(100svh - 330px), 620px); }
+.hero2__copy { position: relative; z-index: 2; max-width: 600px; }
+.hero2__copy .eyebrow { margin-bottom: clamp(14px, .6rem + .6vw, 22px); }
+.hero2__copy h1 { font-size: clamp(2.3rem, 1.2rem + 2.8vw, 4.1rem); line-height: 1.04; letter-spacing: -0.03em; }
+.hero2__copy .h-accent { white-space: nowrap; padding-right: .06em; }
+.hero2__actions { margin-top: clamp(1.6rem, 1rem + 1.4vw, 2.5rem); gap: 12px; }
+
+/* desktop: the panel is positioned against the section (no positioned ancestor in between) */
+.hero2__media {
+  position: absolute; z-index: 1; right: 0;
+  top: calc(var(--header-h) + 38px); bottom: calc(var(--hero2-overlap) + 18px);
+  width: min(45vw, 860px);
+  border-radius: var(--r-xl) 0 0 var(--r-xl); overflow: hidden;
+  background: var(--rg-200) url("../media/hero-eyewear-poster.webp") center / cover no-repeat;
+  box-shadow: var(--shade-3);
+}
+.hero2__media::after { /* glass rim + a soft top sheen over the film */
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--paper) 55%, transparent), inset 12px 0 30px -18px color-mix(in srgb, var(--paper) 70%, transparent);
+  background: linear-gradient(170deg, color-mix(in srgb, var(--paper) 18%, transparent), transparent 30%);
+}
+.hero2__video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; }
+
+/* the quick actions: one glass bar with hairline dividers, straddling the stage's lower edge */
+.hero2 .dock { position: relative; z-index: 3; margin-top: clamp(2.5rem, 1.5rem + 3vw, 4.5rem); }
+.hero2 .dock__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; padding: 8px; border-radius: 30px; background: linear-gradient(140deg, color-mix(in srgb, var(--paper) 90%, transparent), color-mix(in srgb, var(--paper) 74%, transparent)); border-color: var(--glass-rim); }
+.hero2 .dock__item { min-height: 76px; padding: 12px 14px; gap: 12px; border: 0; border-radius: 22px; background: transparent; font-size: .97rem; }
+.hero2 .dock__item::before { content: ""; position: absolute; left: 0; top: 24%; bottom: 24%; width: 1px; background: var(--rg-200); transition: opacity .3s var(--ease); }
+.hero2 .dock__item:first-child::before { display: none; }
+.hero2 .dock__item:hover { transform: translateY(-3px); background: color-mix(in srgb, var(--paper) 92%, transparent); box-shadow: var(--shade-1); }
+.hero2 .dock__item:hover::before, .hero2 .dock__item:hover + .dock__item::before { opacity: 0; }
+.hero2 .dock__icon { width: 44px; height: 44px; border-radius: 14px; }
+.hero2 .dock__icon svg { width: 20px; height: 20px; }
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .hero2__grid { grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr); }
+  .hero2__copy { max-width: 500px; }
+  .hero2__media { width: 42vw; }
+  .hero2__actions .btn--lg { padding-inline: 1.1em; font-size: .95rem; }
+  .hero2 .dock__item { font-size: .92rem; padding: 10px 12px; }
+}
+/* short desktop screens: the bar reaches the first viewport */
+@media (min-width: 1024px) and (max-height: 820px) {
+  .hero2 { padding-top: calc(var(--header-h) + 1.5rem); }
+  .hero2 .dock { margin-top: 1.5rem; }
+}
+/* below 1024px the film follows the copy as a rounded panel in the flow */
+@media (max-width: 1023px) {
+  .hero2__grid { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .hero2__copy { max-width: 640px; }
+  .hero2__media { position: relative; top: auto; bottom: auto; right: auto; width: 100%; aspect-ratio: 16 / 10; border-radius: var(--r-lg); margin-top: clamp(1.8rem, 1rem + 3vw, 2.6rem); }
+  .hero2 .dock__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero2 .dock__item:nth-child(odd)::before { display: none; }
+  .hero2 .dock__item:nth-child(n+3)::after { content: ""; position: absolute; top: 0; left: 10%; right: 10%; height: 1px; background: var(--rg-200); transition: opacity .3s var(--ease); }
+  .hero2 .dock__item:hover::after { opacity: 0; }
+}
+@media (min-width: 641px) and (max-width: 1023px) { .hero2 { padding-top: calc(var(--header-h) + 4rem); } }
+@media (max-width: 640px) {
+  .hero2 { --hero2-overlap: 40px; padding-top: calc(var(--header-h) + 3rem); }
+  .hero2__copy h1 { font-size: clamp(2.1rem, 1.3rem + 3.4vw, 2.6rem); }
+  .hero2__actions { flex-direction: column; align-items: stretch; }
+  .hero2__media { aspect-ratio: 1 / 1; }
+  .hero2 .dock__grid { padding: 6px; border-radius: 24px; }
+  .hero2 .dock__item { flex-direction: column; justify-content: center; text-align: center; min-height: 0; padding: 14px 8px; gap: 8px; font-size: .9rem; border-radius: 18px; }
+  .hero2 .dock__icon { width: 38px; height: 38px; border-radius: 12px; }
+}
+
+/* ======================= Rose gold theme - QA fixes (4 finders + 4 refuters, 2026-09-25) ======================= */
+:root {
+  --mauve: var(--rg-800);      /* TV-03/CON-1: #93605b is 5.2:1 on white but 4.43 on the blush stage; #7f4c47 is 5.96 */
+  --focus: var(--rg-900);      /* F2: the #93605b ring fell to ~2.6:1 on the drawer glass */
+  --text-soft: var(--warm-text-soft);        /* CON-3/CON-4/TV-04/TV-05: #755f61 measured 4.25-4.36 on blush / glass; this is ~5.0 there */
+  --alert: var(--rose-alert);            /* CON-2/TV-07/RG-REQ-1: the source red #eb1e1e is 4.43:1 even on white; a deep rose red is 7+ */
+  --gold: var(--rose-star);             /* TV-12: review stars in rose gold, not yellow; deep enough for the 3:1 graphics minimum on blush (3.7) */
+}
+.stage--night .eyebrow, .glass--night .eyebrow, .band__card .eyebrow { color: var(--rg-800); }
+.breadcrumb .sep { opacity: 1; }   /* CON-5/RG-CRUMB-1: 0.7 opacity made the separator 3.0:1 */
+
+/* TV-06/RG-FORM-1: field edges were slate at 22% (1.4:1); rose gold 600 is >= 3:1 on the white/blush cards */
+.field input, .field select, .field textarea { border-color: var(--rg-600); }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--rg-900); box-shadow: 0 0 0 4px color-mix(in srgb, var(--rg-400) 45%, transparent); }
+
+/* F3: secondary (glass) buttons get a rim that reads on white AND on the blush cards and in a neighbour's
+   shadow (--rg-600 measured 2.5-2.9 there; --rg-700 is >= 3.5 on the darkest measured background) */
+.btn--glass, .stage--night .btn--glass, .glass--night .btn--glass { border-color: var(--rg-700); }
+.btn--glass:hover, .stage--night .btn--glass:hover, .glass--night .btn--glass:hover { border-color: var(--rg-900); }
+
+/* TV-05/TV-08/F2: the drawer was translucent glass over a dark scrim (dusty grey, the film bled through);
+   it is an opaque white-to-blush panel now, over a light warm scrim */
+.drawer__panel { background: linear-gradient(165deg, var(--paper), var(--rg-50) 60%, var(--rg-100)); -webkit-backdrop-filter: none; backdrop-filter: none; }
+.drawer__scrim { background: color-mix(in srgb, var(--rg-900) 24%, transparent); }
+.drawer__menu a:hover { background: var(--rg-100); }
+
+/* TV-10: dropdown hover had no visible change */
+.submenu a:hover { background: var(--rg-100); color: var(--rg-900); }
+/* TV-11: one "today" highlight everywhere (cards matched grey, the footer rose) */
+.hours-list li.is-today { background: color-mix(in srgb, var(--rg-300) 42%, transparent); }
+
+/* TV-02: the generated lens-disc cut-out is lilac/violet; turned to the rose family in CSS (file untouched) */
+img[src*="cut-lens-disc"] { filter: hue-rotate(58deg) saturate(.85); }
+
+/* TV-01/F1: the icon-only header button (1024-1239) clipped its own tooltip (.btn is overflow:hidden); the
+   tooltip is unclipped and on-theme, and the sweep band (which would leak outside the circle) is off there -
+   the metal still glimmers through its sliding reflection */
+@media (min-width: 1024px) and (max-width: 1239px) {
+  .header-cta .btn { overflow: visible; }
+  .header-cta .btn::before { display: none; }
+  .header-cta .btn::after { background: var(--paper); color: var(--ink); border: 1px solid var(--rg-300); box-shadow: var(--shade-1); }
+}
+
+/* F5: on tall 1024-1279 screens the film panel became a narrow column (430x707, 34% of the film's width)
+   and cropped the face and glasses. Its height is now capped to a landscape-ish shape (>= 64% of the film's
+   width shows) and it is centred in the stage (auto margins on an absolutely positioned box). */
+.hero2__media { max-height: calc(min(45vw, 860px) * .88); margin-block: auto; }
+@media (min-width: 1024px) and (max-width: 1279px) { .hero2__media { max-height: calc(42vw * .88); } }
+@media (max-width: 1023px) { .hero2__media { max-height: none; margin-block: clamp(1.8rem, 1rem + 3vw, 2.6rem) 0; } }
+@media (max-width: 640px) { .hero2__media { aspect-ratio: 6 / 5; } }
+
+/* RG-PRINT-1: a printout carried 1 of 7 reviews (the deck stacks them); print lists them all */
+@media print {
+  .deck { display: block; min-height: 0 !important; padding: 0; }
+  .deck__card { transform: none !important; opacity: 1 !important; filter: none !important; max-height: none !important; min-height: 0 !important; margin: 0 0 12px; -webkit-mask-image: none !important; mask-image: none !important; }
+  .deck__card > * { opacity: 1 !important; }
+  .deck .deck__card blockquote { max-height: none !important; -webkit-mask-image: none !important; mask-image: none !important; }
+  .deck__more, .reviews__controls { display: none !important; }
 }
